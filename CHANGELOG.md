@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.10] - 2021-08-25
+## [0.1.30] - 2021-08-25
 ### Added
 - Repo init
+- WebExampleAppMvc project
+- Get started
+- Add a controller
+- Add a view
