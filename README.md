@@ -10,7 +10,7 @@
 
 ![Successed](Pics/Actions-dialog-ok-apply-icon.png?raw=true) 3. Add a view
 
-4. Add a model
+![Successed](Pics/Actions-dialog-ok-apply-icon.png?raw=true) 4. Add a model
 
 5. Work with a database
 
@@ -23,3 +23,9 @@
 9. Add validation
 
 10. Examine the details and delete methods
+
+--------
+
+## [SqlLocalDB Utility](https://docs.microsoft.com/en-us/sql/tools/sqllocaldb-utility?view=sql-server-ver15 "docs.microsoft.com")
+- Run at cmd: **SqlLocalDB i MSSQLLocalDB** -- view info 
+- Run at SSMS (server name): **Instance pipe name**
