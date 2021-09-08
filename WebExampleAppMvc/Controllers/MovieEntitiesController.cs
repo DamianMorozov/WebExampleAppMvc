@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading.Tasks;
 using WebExampleAppMvc.Data;
@@ -7,14 +11,19 @@ using WebExampleAppMvc.Models;
 
 namespace WebExampleAppMvc.Controllers
 {
-    public class MovieEntitiesController : Controller
+    public class MovieEntitiesController : BaseController
     {
-        private readonly MvcMovieContext _context;
+        #region Constructor and destructor
 
-        public MovieEntitiesController(MvcMovieContext context)
+        private readonly MvcMovieContext _context;
+        public MovieEntitiesController(ILogger<HomeController> logger, MvcMovieContext context) : base(logger)
         {
             _context = context;
         }
+
+        #endregion
+
+        #region Public and private methods
 
         // GET: MovieEntities
         public async Task<IActionResult> Index()
@@ -22,7 +31,7 @@ namespace WebExampleAppMvc.Controllers
             return View(await _context.MovieEntity.ToListAsync());
         }
 
-        // GET: MovieEntities/Details/5
+        // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -30,14 +39,13 @@ namespace WebExampleAppMvc.Controllers
                 return NotFound();
             }
 
-            var movieEntity = await _context.MovieEntity
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (movieEntity == null)
+            MovieEntity movie = await _context.MovieEntity.FirstOrDefaultAsync(m => m.Id == id);
+            if (movie == null)
             {
                 return NotFound();
             }
 
-            return View(movieEntity);
+            return View(movie);
         }
 
         // GET: MovieEntities/Create
@@ -70,7 +78,7 @@ namespace WebExampleAppMvc.Controllers
                 return NotFound();
             }
 
-            var movieEntity = await _context.MovieEntity.FindAsync(id);
+            MovieEntity movieEntity = await _context.MovieEntity.FindAsync(id);
             if (movieEntity == null)
             {
                 return NotFound();
@@ -121,7 +129,7 @@ namespace WebExampleAppMvc.Controllers
                 return NotFound();
             }
 
-            var movieEntity = await _context.MovieEntity
+            MovieEntity movieEntity = await _context.MovieEntity
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (movieEntity == null)
             {
@@ -136,7 +144,7 @@ namespace WebExampleAppMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movieEntity = await _context.MovieEntity.FindAsync(id);
+            MovieEntity movieEntity = await _context.MovieEntity.FindAsync(id);
             _context.MovieEntity.Remove(movieEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -146,5 +154,7 @@ namespace WebExampleAppMvc.Controllers
         {
             return _context.MovieEntity.Any(e => e.Id == id);
         }
+
+        #endregion
     }
 }

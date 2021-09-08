@@ -24,6 +24,8 @@
 
 10. Examine the details and delete methods
 
+![Successed](Pics/Actions-dialog-ok-apply-icon.png?raw=true) 11. Add controller with routes and params
+
 --------
 
 ## [SqlLocalDB Utility](https://docs.microsoft.com/en-us/sql/tools/sqllocaldb-utility?view=sql-server-ver15 "docs.microsoft.com")

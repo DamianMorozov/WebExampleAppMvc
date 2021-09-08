@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using WebExampleAppMvc.Data;
+using WebExampleAppMvc.Models;
 
 namespace WebExampleAppMvc
 {
@@ -21,9 +25,10 @@ namespace WebExampleAppMvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddControllers();
             services.AddDbContext<MvcMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+            services.AddSingleton<JsonSettingsEntity>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
